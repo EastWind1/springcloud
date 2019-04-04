@@ -1,0 +1,19 @@
+# 这些配置必须在应用启动时调用，因此单独为bootstrap.yml文件，spring会自动识别
+
+spring:
+  cloud:
+    config:
+      # 启动配置中心自动发现，服务会自动在注册中心查找
+      discovery:
+        enabled: true
+        serviceId: config
+      name: common,servicea
+      profile: default
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+server:
+  port: 8083

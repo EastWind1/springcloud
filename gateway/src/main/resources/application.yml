@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: zuul
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 启动根据service instance配置路由
+          enabled: true
+          # 默认为大写，将所有instance转为小写
+          lower-case-service-id: true
+          # 将请求转发至对应服务时取出的前缀个数
+          filters:
+            - StripPrefix=1
+      # 手工配置路由
+#      routes:
+#        - id: angular
+#          # 配置转发至的url，lb://xx表示转发至对应的service
+#          uri: http://localhost:4201
+#          # 转发的url
+#          predicates:
+#            - Path=/web/**
+#          filters:
+#            - StripPrefix=1
+  security:
+    user:
+      name: root
+      password: admin
+

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: config
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/springcloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: admin
+  jpa:
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: SELECT `KEY`, `VALUE` from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+  profiles:
+    active:
+      - jdbc
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+server:
+  port: 8090
